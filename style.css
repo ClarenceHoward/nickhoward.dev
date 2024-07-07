@@ -389,6 +389,7 @@ article{
 .project-btn {
     color: black;
     border-color: rgb(163, 163, 163);
+    z-index: 1;
   }
 
   .project-media-container{
