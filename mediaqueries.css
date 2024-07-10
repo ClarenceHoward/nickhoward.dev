@@ -36,6 +36,8 @@
     section,
     .section-container {
       height: fit-content;
+      text-align: center;
+      padding-bottom: 20px;
     }
     section {
       margin: 0 5%;
