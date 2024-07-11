@@ -148,7 +148,7 @@ const gameLoop = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   createGrid();
-  setInterval(gameLoop, 500); // Update every 1 second
+  setInterval(gameLoop, 1000); // Update every 1 second
 });
 
 window.onresize = () => createGrid();
