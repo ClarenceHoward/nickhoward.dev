@@ -39,16 +39,15 @@ const createGrid = () => {
   
   createTiles(columns * rows);
   tileStates = Array(columns * rows).fill(false); // Initialize the tile states
+
+  // Glider 
   tileStates[2]= true;
   tileStates[2 + columns]= true;
   tileStates[columns]= true;
   tileStates[2 + 2*columns]= true;
   tileStates[1+ 2*columns]= true;
 
-  
-
-
-
+  // Line
   tileStates[30 +30*columns]= true;
   tileStates[30 +29*columns]= true;
   tileStates[30 +28*columns]= true;
@@ -57,14 +56,14 @@ const createGrid = () => {
   tileStates[30 +25*columns]= true;
   tileStates[30 +24*columns]= true;
 
-
-
+  // R-pentomino - Bottom
   tileStates[4 +35*columns]= true;
   tileStates[4 +36*columns]= true;
   tileStates[4 +37*columns]= true;
   tileStates[3 +36*columns]= true;
   tileStates[5 +35*columns]= true;
 
+  // R-pentomino - Top
   tileStates[27 +5*columns]= true;
   tileStates[27 +6*columns]= true;
   tileStates[27 +7*columns]= true;
