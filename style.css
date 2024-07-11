@@ -351,6 +351,7 @@ section {
 #experience {
     position: relative;
     min-height: fit-content; 
+    pointer-events: none;
 }
 
 .experience-sub-title{
