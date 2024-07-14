@@ -470,6 +470,8 @@ article{
     height: 2.5rem;
   }
 
+  /*Background Grid*/
+
   :root {
     --g1: rgb(98, 0, 234);
     --g2: rgb(236, 64, 122);
@@ -508,6 +510,8 @@ article{
     transform: translate(-50%, -50%);
   }
   
+  /* Creates a grid for the div using the const columns and rows
+  provided by ConwayGame.js */
   #tiles {
     height: calc(100vh - 1px);
     width: calc(100vw - 1px);
@@ -536,7 +540,7 @@ article{
   }
 
   .tile.clicked:before {
-    background-color: rgb(117, 128, 229); /* Choose your desired color */
+    background-color: rgb(117, 128, 229); 
 }
   
   
