@@ -48,37 +48,91 @@ const createGrid = () => {
   createTiles(columns * rows);
   tileStates = Array(columns * rows).fill(false); 
 
-  /* Hardcoded prepopulated shapes */
+  /* Hardcoded pre-populated shapes */ 
 
-  // Glider 
-  tileStates[2]= true;
-  tileStates[2 + columns]= true;
-  tileStates[columns]= true;
-  tileStates[2 + 2*columns]= true;
-  tileStates[1+ 2*columns]= true;
+  // Gosper Glider Gun
+  tileStates[1 + 5 * columns] = true;
+  tileStates[2 + 5 * columns] = true;
+  tileStates[1 + 6 * columns] = true;
+  tileStates[2 + 6 * columns] = true;
 
-  // Line
-  tileStates[30 +30*columns]= true;
-  tileStates[30 +29*columns]= true;
-  tileStates[30 +28*columns]= true;
-  tileStates[30 +27*columns]= true;
-  tileStates[30 +26*columns]= true;
-  tileStates[30 +25*columns]= true;
-  tileStates[30 +24*columns]= true;
+  tileStates[11 + 5 * columns] = true;
+  tileStates[11 + 6 * columns] = true;
+  tileStates[11 + 7 * columns] = true;
+  tileStates[12 + 4 * columns] = true;
+  tileStates[12 + 8 * columns] = true;
+  tileStates[13 + 3 * columns] = true;
+  tileStates[13 + 9 * columns] = true;
+  tileStates[14 + 3 * columns] = true;
+  tileStates[14 + 9 * columns] = true;
+  tileStates[15 + 6 * columns] = true;
+  tileStates[16 + 4 * columns] = true;
+  tileStates[16 + 8 * columns] = true;
+  tileStates[17 + 5 * columns] = true;
+  tileStates[17 + 6 * columns] = true;
+  tileStates[17 + 7 * columns] = true;
+  tileStates[18 + 6 * columns] = true;
 
-  // R-pentomino - Bottom
-  tileStates[4 +35*columns]= true;
-  tileStates[4 +36*columns]= true;
-  tileStates[4 +37*columns]= true;
-  tileStates[3 +36*columns]= true;
-  tileStates[5 +35*columns]= true;
+  tileStates[21 + 3 * columns] = true;
+  tileStates[21 + 4 * columns] = true;
+  tileStates[21 + 5 * columns] = true;
+  tileStates[22 + 3 * columns] = true;
+  tileStates[22 + 4 * columns] = true;
+  tileStates[22 + 5 * columns] = true;
+  tileStates[23 + 2 * columns] = true;
+  tileStates[23 + 6 * columns] = true;
+  tileStates[25 + 1 * columns] = true;
+  tileStates[25 + 2 * columns] = true;
+  tileStates[25 + 6 * columns] = true;
+  tileStates[25 + 7 * columns] = true;
 
-  // R-pentomino - Top
-  tileStates[27 +5*columns]= true;
-  tileStates[27 +6*columns]= true;
-  tileStates[27 +7*columns]= true;
-  tileStates[26 +6*columns]= true;
-  tileStates[28 +5*columns]= true;
+  tileStates[35 + 3 * columns] = true;
+  tileStates[35 + 4 * columns] = true;
+  tileStates[36 + 3 * columns] = true;
+  tileStates[36 + 4 * columns] = true;
+   
+
+  // // Line
+  // tileStates[8 +30*columns]= true;
+  // tileStates[8 +29*columns]= true;
+  // tileStates[8 +28*columns]= true;
+  // tileStates[8 +27*columns]= true;
+  // tileStates[8 +26*columns]= true;
+  // tileStates[8 +25*columns]= true;
+  // tileStates[8 +24*columns]= true;
+
+  // // R-pentomino - Bottom
+  // tileStates[4 +35*columns]= true;
+  // tileStates[4 +36*columns]= true;
+  // tileStates[4 +37*columns]= true;
+  // tileStates[3 +36*columns]= true;
+  // tileStates[5 +35*columns]= true;
+
+  // // R-pentomino - Top
+  // tileStates[27 +5*columns]= true;
+  // tileStates[27 +6*columns]= true;
+  // tileStates[27 +7*columns]= true;
+  // tileStates[26 +6*columns]= true;
+  // tileStates[28 +5*columns]= true;
+
+  // Diehard
+  tileStates[10 + 26 * columns] = true;
+  tileStates[11 + 26 * columns] = true;
+  tileStates[11 + 27 * columns] = true;
+  tileStates[15 + 27 * columns] = true;
+  tileStates[16 + 27 * columns] = true;
+  tileStates[17 + 27 * columns] = true;
+  tileStates[16 + 25 * columns] = true;
+
+  // // Acorn
+  // tileStates[11 + 31 * columns] = true;
+  // tileStates[12 + 31 * columns] = true;
+  // tileStates[12 + 33 * columns] = true;
+  // tileStates[14 + 32 * columns] = true;
+  // tileStates[15 + 31 * columns] = true;
+  // tileStates[16 + 31 * columns] = true;
+  // tileStates[17 + 31 * columns] = true;
+
 
    updateTiles();
 
@@ -160,7 +214,7 @@ function gameLoop () {
 
 document.addEventListener('DOMContentLoaded', () => {
   createGrid();
-  setInterval(gameLoop, 1000); // Update every 1 second
+  setInterval(gameLoop, 750); // Updates per millisecond
 });
 
 window.onresize = () => createGrid();
