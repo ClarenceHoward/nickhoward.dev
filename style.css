@@ -473,8 +473,8 @@ article{
   /*Background Grid*/
 
   :root {
-    --g1: rgb(98, 0, 234);
-    --g2: rgb(236, 64, 122);
+    --g1: rgb(0, 173, 173);
+    --g2: rgb(52, 66, 255);
   }
   
   @keyframes background-pan {
@@ -540,7 +540,7 @@ article{
   }
 
   .tile.clicked:before {
-    background-color: rgb(117, 128, 229); 
+    background-color: rgb(0, 146, 204); 
 }
   
   
