@@ -4,13 +4,28 @@ const backgroundGrid = document.getElementById("tiles");
 
 let columns = 0,
     rows = 0,
-    tileStates = [];
+    tileStates = [],
+    intervalId,
+    clickTimeoutId,
+    debounceDelay = 300; // Delay after last click before resuming game loop (in milliseconds)
 
 
-// Updates the Boolean array tileStates if a tile is clicked
+// Updates the Boolean array tileStates if a tile is clicked.
+// Pauses the next interval until 750ms after the last click.
 const handleOnClick = index => {
   tileStates[index] = !tileStates[index]; // Toggle state
   updateTileState(index);
+  debounceGameLoop();
+}
+
+// Debounce function to pause the game loop after a click and resume it after a delay
+const debounceGameLoop = () => {
+  clearInterval(intervalId);
+  
+  clearTimeout(clickTimeoutId);
+  clickTimeoutId = setTimeout(() => {
+    intervalId = setInterval(gameLoop, 500); // Update every 0.5 seconds
+  }, debounceDelay);
 }
 
 //Creates a single tile, adds it to the div, and sets its click event to
@@ -90,6 +105,25 @@ const createGrid = () => {
   tileStates[35 + 4 * columns] = true;
   tileStates[36 + 3 * columns] = true;
   tileStates[36 + 4 * columns] = true;
+
+    // Tub with Tail Eater
+  tileStates[3 + 32 * columns] = true;
+  tileStates[4 + 31 * columns] = true;
+  tileStates[4 + 33 * columns] = true;
+  tileStates[5 + 32 * columns] = true;
+
+  tileStates[9 + 31 * columns] = true;
+  tileStates[8 + 31 * columns] = true;
+  tileStates[9 + 30 * columns] = true;
+  tileStates[8 + 30 * columns] = true;
+
+  tileStates[2 + 33 * columns] = true;
+  tileStates[2 + 34 * columns] = true;
+  tileStates[2 + 35 * columns] = true;
+  tileStates[1 + 35 * columns] = true;
+ 
+
+ 
    
 
   // // Line
@@ -115,14 +149,14 @@ const createGrid = () => {
   // tileStates[26 +6*columns]= true;
   // tileStates[28 +5*columns]= true;
 
-  // Diehard
-  tileStates[10 + 26 * columns] = true;
-  tileStates[11 + 26 * columns] = true;
-  tileStates[11 + 27 * columns] = true;
-  tileStates[15 + 27 * columns] = true;
-  tileStates[16 + 27 * columns] = true;
-  tileStates[17 + 27 * columns] = true;
-  tileStates[16 + 25 * columns] = true;
+  // // Diehard
+  // tileStates[10 + 26 * columns] = true;
+  // tileStates[11 + 26 * columns] = true;
+  // tileStates[11 + 27 * columns] = true;
+  // tileStates[15 + 27 * columns] = true;
+  // tileStates[16 + 27 * columns] = true;
+  // tileStates[17 + 27 * columns] = true;
+  // tileStates[16 + 25 * columns] = true;
 
   // // Acorn
   // tileStates[11 + 31 * columns] = true;
@@ -214,7 +248,7 @@ function gameLoop () {
 
 document.addEventListener('DOMContentLoaded', () => {
   createGrid();
-  setInterval(gameLoop, 750); // Updates per millisecond
+  intervalId = setInterval(gameLoop, 500); // Updates per millisecond
 });
 
 window.onresize = () => createGrid();
