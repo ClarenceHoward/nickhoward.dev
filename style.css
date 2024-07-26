@@ -298,6 +298,7 @@ section {
     gap: 2rem;
     margin-bottom: 2rem;
     margin-top: 2rem;
+    pointer-events: none;
 }
 
 .about-details-container{
@@ -334,6 +335,7 @@ section {
     z-index: 3;
     margin: 10px;
     padding: 10px;
+    pointer-events:all;
 }
 
 /*
@@ -373,6 +375,7 @@ h3 {
     display: flex;
     justify-content: center;
     flex-direction:column;
+    pointer-events: none;
 }
 
 .article-container{
