@@ -441,8 +441,9 @@ article{
     justify-content: center;
     flex-direction: column;
     min-height: fit-content;
-    margin-top: 15vh;
+    margin-top: 50px;
     pointer-events: none;
+    clear: both;
   }
   
   .contact-info-upper-container {
