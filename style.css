@@ -307,6 +307,7 @@ section {
 
 .about-containers, .about-details-container {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .about-pic{
@@ -331,6 +332,8 @@ section {
     border-color: rgb(163,163,163);
     text-align: center;
     z-index: 3;
+    margin: 10px;
+    padding: 10px;
 }
 
 /*
@@ -398,6 +401,8 @@ article{
 #projects{
     position: relative;
     min-height: fit-content; 
+    clear: both;
+    margin-bottom: 100vh;
 }
 
 .color-container{
