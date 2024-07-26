@@ -1,0 +1,4 @@
+[submodule "MazeAutomata"]
+    path = MazeAutomata
+    url = https://github.com/ClarenceHoward/MazeAutomata.git
+
