@@ -3,68 +3,66 @@
 const backgroundGrid = document.getElementById("tiles");
 
 let columns = 0,
-    rows = 0,
-    tileStates = [],
-    intervalId,
-    clickTimeoutId,
-    debounceDelay = 300; // Delay after last click before resuming game loop (in milliseconds)
-
+  rows = 0,
+  tileStates = [],
+  intervalId,
+  clickTimeoutId,
+  debounceDelay = 300; // Delay after last click before resuming game loop (in milliseconds)
 
 // Updates the Boolean array tileStates if a tile is clicked.
 // Pauses the next interval until 750ms after the last click.
-const handleOnClick = index => {
+const handleOnClick = (index) => {
   tileStates[index] = !tileStates[index]; // Toggle state
   updateTileState(index);
   debounceGameLoop();
-}
+};
 
 // Debounce function to pause the game loop after a click and resume it after a delay
 const debounceGameLoop = () => {
   clearInterval(intervalId);
-  
+
   clearTimeout(clickTimeoutId);
   clickTimeoutId = setTimeout(() => {
     intervalId = setInterval(gameLoop, 500); // Update every 0.5 seconds
   }, debounceDelay);
-}
+};
 
 //Creates a single tile, adds it to the div, and sets its click event to
 // toggle the boolean state at the tile index of the array tileStates.
-const createTile = index => {
+const createTile = (index) => {
   const tile = document.createElement("div");
   tile.classList.add("tile");
   tile.onclick = () => handleOnClick(index);
   return tile;
-}
+};
 
 /* Creates and append *quantity* amount of tiles to the div element tiles*/
-const createTiles = quantity => {
+const createTiles = (quantity) => {
   backgroundGrid.innerHTML = "";
   for (let index = 0; index < quantity; index++) {
     backgroundGrid.appendChild(createTile(index));
   }
-}
+};
 
 const createGrid = () => {
-
-  //Size of the tiles 
+  //Size of the tiles
   const size = document.body.clientWidth > 800 ? 50 : 25;
-  
+
   // Size of the grid layout - add 1 extra column and row to ensure full coverage
   columns = Math.ceil(document.body.clientWidth / size);
   rows = Math.ceil(document.body.clientHeight / size);
-  
+
   // Pass dimensions to style sheet to create grid layout
   backgroundGrid.style.setProperty("--columns", columns);
   backgroundGrid.style.setProperty("--rows", rows);
   backgroundGrid.style.setProperty("--tile-size", `${size}px`);
-  
-  // Populate the grid initialize each respective boolean in
-  // tileStates to false. 
-  createTiles(columns * rows);
-  tileStates = Array(columns * rows).fill(false); 
 
-  /* Hardcoded pre-populated shapes */ 
+  // Populate the grid initialize each respective boolean in
+  // tileStates to false.
+  createTiles(columns * rows);
+  tileStates = Array(columns * rows).fill(false);
+
+  /* Hardcoded pre-populated shapes */
 
   // Gosper Glider Gun
   tileStates[1 + 5 * columns] = true;
@@ -107,7 +105,7 @@ const createGrid = () => {
   tileStates[36 + 3 * columns] = true;
   tileStates[36 + 4 * columns] = true;
 
-    // Tub with Tail Eater
+  // Tub with Tail Eater
   tileStates[3 + 32 * columns] = true;
   tileStates[4 + 31 * columns] = true;
   tileStates[4 + 33 * columns] = true;
@@ -122,10 +120,6 @@ const createGrid = () => {
   tileStates[2 + 34 * columns] = true;
   tileStates[2 + 35 * columns] = true;
   tileStates[1 + 35 * columns] = true;
- 
-
- 
-   
 
   // // Line
   // tileStates[8 +30*columns]= true;
@@ -168,14 +162,11 @@ const createGrid = () => {
   // tileStates[16 + 31 * columns] = true;
   // tileStates[17 + 31 * columns] = true;
 
-
-   updateTiles();
-
-}
+  updateTiles();
+};
 
 // Counts the live neighbours of a single cell
-function getNeighbors(index){
-  
+function getNeighbors(index) {
   let liveNeighbors = 0;
   const row = Math.floor(index / columns);
   const col = index % columns;
@@ -204,12 +195,10 @@ function getNeighbors(index){
       3 live neighbours: if living => remain living; if not living => become alive.
       3 or more => cell dies;
 */
-function getNextState(){  
-
+function getNextState() {
   newStates = tileStates.slice();
 
-  for(i=0; i<tileStates.length; i++){
-  
+  for (i = 0; i < tileStates.length; i++) {
     let state = tileStates[i];
     let liveNeighbors = getNeighbors(i);
 
@@ -217,37 +206,35 @@ function getNextState(){
       newStates[i] = false; // Cell dies
     }
     if (!state && liveNeighbors === 3) {
-      newStates[i] =  true; // Cell becomes alive
+      newStates[i] = true; // Cell becomes alive
     }
   }
   return newStates;
 }
 
-
 function updateTiles() {
-
-  for(i=0; i<tileStates.length; i++){
+  for (i = 0; i < tileStates.length; i++) {
     updateTileState(i);
   }
 }
 
 /* Updates the appearance of the cell by appending or removing clicked from the tile element */
 function updateTileState(index) {
-  const tile = document.querySelectorAll('.tile')[index];
+  const tile = document.querySelectorAll(".tile")[index];
   if (tileStates[index]) {
-    tile.classList.add('clicked');
+    tile.classList.add("clicked");
   } else {
-    tile.classList.remove('clicked');
+    tile.classList.remove("clicked");
   }
 }
 
 // Main loop. Updates model then view.
-function gameLoop () {
+function gameLoop() {
   tileStates = getNextState();
   updateTiles();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   createGrid();
   intervalId = setInterval(gameLoop, 500); // Updates per millisecond
 });
