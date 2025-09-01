@@ -117,4 +117,8 @@
     .text-container {
       text-align: justify;
     }
+    /* Make experience details container full width on mobile */
+    .experience-details-container {
+      max-width: 100% !important;
+    }
   }
