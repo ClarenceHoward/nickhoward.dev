@@ -50,13 +50,14 @@ const createGrid = () => {
   //Size of the tiles 
   const size = document.body.clientWidth > 800 ? 50 : 25;
   
-  // Size of the grid layout
-  columns = Math.floor(document.body.clientWidth / size);
-  rows = Math.floor(document.body.clientHeight / size);
+  // Size of the grid layout - add 1 extra column and row to ensure full coverage
+  columns = Math.ceil(document.body.clientWidth / size);
+  rows = Math.ceil(document.body.clientHeight / size);
   
   // Pass dimensions to style sheet to create grid layout
   backgroundGrid.style.setProperty("--columns", columns);
   backgroundGrid.style.setProperty("--rows", rows);
+  backgroundGrid.style.setProperty("--tile-size", `${size}px`);
   
   // Populate the grid initialize each respective boolean in
   // tileStates to false. 
